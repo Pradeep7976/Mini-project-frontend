@@ -70,7 +70,7 @@ const Edit_Profile = () => {
       <Card margin="5" bgGradient='linear(to-b, blue.400, blue.600)' borderRadius={10}>
         <Tabs mt="5" padding="auto" variant="soft-rounded" colorScheme="green">
           <TabList justifyContent={"center"}>
-            <Tab color="white">Create Account</Tab>
+            <Tab color="white">Feedback</Tab>
           </TabList>
 
           <TabPanels>
