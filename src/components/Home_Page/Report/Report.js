@@ -19,6 +19,7 @@ const Report = () => {
       mr="5"
       mb="5"
       borderRadius={10}
+      onClick={navi}
     >
       <Box
         as="button"
@@ -28,7 +29,6 @@ const Report = () => {
         px={4}
         h={9}
         m="auto"
-        onClick={navi}
       >
         <Heading>Report A Problem </Heading>
       </Box>

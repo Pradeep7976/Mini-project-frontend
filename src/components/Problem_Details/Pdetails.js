@@ -206,8 +206,7 @@ const Pdetails = () => {
               mb="6"
               placeholder="Add more details(optional)..."
               onChange={(e) => {
-                console.log(e.target.value);
-                setdescription(e.target.value);
+                // console.log(e.target.value);
               }}
             />
             <Text>
