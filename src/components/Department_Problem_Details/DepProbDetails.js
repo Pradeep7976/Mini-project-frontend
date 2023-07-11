@@ -16,7 +16,7 @@ import axios from "axios";
 import LoadingPage from "../LoadingPage/LoadingPage";
 
 const DepProbDetails = () => {
-  const Port = "https://expensive-hem-elk.cyclic.app/";
+  const Port = "https://expensive-hem-elk.cyclic.app";
   const port = "https://expensive-hem-elk.cyclic.app/";
 
   let params = useParams();
@@ -28,6 +28,7 @@ const DepProbDetails = () => {
   const [noofdays, setnoofdays] = useState(0);
   const [userdetails, setuserdetails] = useState({});
   const [load, setload] = useState(true);
+  const [solvername, setsolvername] = useState("");
 
   let navigate = useNavigate();
 
@@ -38,6 +39,13 @@ const DepProbDetails = () => {
         setproblem(result.data);
         setuid(result.data.uid);
         console.log(result.data);
+        if (result.data.status) {
+          axios
+            .get(Port + "api/reportprob/solvername/" + problem.pid)
+            .then((resp) => {
+              setsolvername(resp.data.name);
+            });
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -60,7 +68,7 @@ const DepProbDetails = () => {
         if (result.data != null) setnoofdays(result.data.timeelapsed);
         setload(false);
       });
-  }, [uid, count, noofdays]);
+  }, [uid, count, noofdays,solvername]);
   return load ? (
     <LoadingPage />
   ) : (
@@ -89,7 +97,7 @@ const DepProbDetails = () => {
           pl="4"
           pr="4"
           mb="5"
-          bgGradient='linear(to-b, blue.600, blue.400)'
+          bgGradient="linear(to-b, blue.600, blue.400)"
           color="white"
           fontSize="3xl"
         >
@@ -201,6 +209,10 @@ const DepProbDetails = () => {
                     <Text fontWeight={"44px"} fontSize={"sm"} color={"green"}>
                       SOLVED
                     </Text>
+                    <Badge colorScheme="green" fontSize={"sm"}>
+                      solvername :{" "}
+                    </Badge>{" "}
+                    <Text>{solvername}</Text>
                   </strong>
                 ) : (
                   <strong>
